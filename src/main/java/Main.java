@@ -8,34 +8,38 @@ public class Main {
             System.out.println("Введите название машины №" + i);
             String name = scanner.next();
             System.out.println("Введите скорость машины №" + i);
-            while (true) {
-                int speed = scanner.nextInt();
-                if (speed > 0 & speed <= 250) {
 
-                    race.calculate(name, speed);
-                    break;
-                } else {
-                    System.out.println("Введено неверное значение. Попробуйте еще раз.");
-                }
-            }
 
+
+                  while (true) {
+
+
+
+                      if (scanner.hasNextInt()) {
+                          int speed = scanner.nextInt();
+                          if (speed > 0 & speed <= 250) {
+                              race.calculate(name, speed);
+                              break;
+                          }
+                          else {
+                              System.out.println("Введено неверное значение. Попробуйте еще раз.");
+                          }
+
+                      } else {
+                          scanner.nextLine();
+                          System.out.println("Введите целое число");
+                      }
+                  }
         }
         System.out.println("Самая быстрая машина: " + race.leader);
     }
 }
-class Car {
-    String name;
-    int speed;
 
-    public Car(String name, int speed) {
-        this.name = name;
-        this.speed = speed;
-    }
-}
+
 
 class Race {
-    String leader = "";
-    int leaderDistace = 0;
+     String leader = "";
+     int leaderDistace = 0;
 
     void calculate(String name, int speed) {
         int distance;
